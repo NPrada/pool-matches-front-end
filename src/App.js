@@ -3,22 +3,17 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import Home from './components/home'
 
+
 const BasicExample = () => (
   <Router>
-    <div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-        <li>
-          <Link to="/topics">Topics</Link>
-        </li>
-      </ul>
+    <div id={'main'}>
 
-      <hr />
+      <div className={"nav-bar"}>
+          <div className={'nav-button'}> <Link to="/">Home</Link> </div>
+          <div className={'nav-button'}> <Link to="/about">Games</Link> </div>
+          <div className={'nav-button'}> <Link to="/newGame">New Game </Link> </div>
+          <div className={'nav-button'}> <Link to="/topics">Players</Link> </div>
+      </div>
 
       <Route exact path="/" component={Home} />
       <Route path="/about" component={About} />
@@ -26,12 +21,6 @@ const BasicExample = () => (
     </div>
   </Router>
 );
-
-// const Home = () => (
-//   <div>
-//     <h2>Home</h2>
-//   </div>
-// );
 
 const About = () => (
   <div>
