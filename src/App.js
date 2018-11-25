@@ -4,58 +4,90 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Home from './components/home'
 import Players from './components/players';
 
-const BasicExample = () => (
+const routes = [
+  {
+    path: "/",
+    exact: true,
+    sidebar: () => <BreadCrumbs crumbs={['Home']}/>,
+    main: () => <Home/>
+  },
+  {
+    path: "/games",
+    sidebar: () =>  <BreadCrumbs crumbs={['Home', 'Games']}/>,
+    main: () => <h2>Games</h2>
+  },
+  {
+    path: "/newGame",
+    sidebar: () =>  <BreadCrumbs crumbs={['Home', 'New Games']}/>,
+    main: () => <h2>NewGame</h2>
+  },
+  {
+    path: "/players",
+    sidebar: () =>  <BreadCrumbs crumbs={['Home', 'Players']}/>,
+    main: () => <Players/>
+  }
+];
+
+const App = () => (
   <Router>
     <div id={'main'}>
 
       <div className={"nav-bar"}>
           <div className={'nav-button'}> <Link to="/">Home</Link> </div>
-          <div className={'nav-button'}> <Link to="/about">Games</Link> </div>
+          <div className={'nav-button'}> <Link to="/games">Games</Link> </div>
           <div className={'nav-button'}> <Link to="/newGame">New Game </Link> </div>
           <div className={'nav-button'}> <Link to="/players">Players</Link> </div>
       </div>
 
-      <Route exact path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/players" component={Players} />
+      {routes.map((route, index) => (
+        // Render all the results(routes) for the components
+        <Route
+          key={index}
+          path={route.path}
+          exact={route.exact}
+          component={route.sidebar}
+        />
+      ))}
+
+      {routes.map((route, index) => (
+        // Render all the results(routes) for the components
+        <Route
+          key={index}
+          path={route.path}
+          exact={route.exact}
+          component={route.main}
+        />
+      ))}
+
     </div>
   </Router>
 );
 
-const About = () => (
-  <div>
-    <h2>About</h2>
-  </div>
-);
+const crumb = (crumbName) => {
+  const link = crumbName === 'Home' ? '/' : '/'+crumbName;
+  return (
+    <div key={crumbName} className={'crumb'}>
+      <div className={'crumb-name'}><Link to={link}>{crumbName}</Link></div>
+      <div className={'crumb-separator'}> /</div>
+    </div>
+  );
+}
 
-// const Topics = ({ match }) => (
-//   <div>
-//     <h2>Topics</h2>
-//     <ul>
-//       <li>
-//         <Link to={`${match.url}/rendering`}>Rendering with React</Link>
-//       </li>
-//       <li>
-//         <Link to={`${match.url}/components`}>Components</Link>
-//       </li>
-//       <li>
-//         <Link to={`${match.url}/props-v-state`}>Props v. State</Link>
-//       </li>
-//     </ul>
-//
-//     <Route path={`${match.url}/:topicId`} component={Topic} />
-//     <Route
-//       exact
-//       path={match.url}
-//       render={() => <h3>Please select a topic.</h3>}
-//     />
-//   </div>
-// );
+const BreadCrumbs = (crumbs) => {
+  let allCrumbs = [];
 
-// const Topic = ({ match }) => (
-//   <div>
-//     <h3>{match.params.topicId}</h3>
-//   </div>
-// );
+  crumbs.crumbs.forEach((val)=>{
+    allCrumbs.push(crumb(val))
+  });
 
-export default BasicExample;
+  return (
+    <div className={'breadcrumbs-main'}>
+      {allCrumbs}
+    </div>
+  )
+}
+
+
+
+
+export default App;

@@ -67,8 +67,6 @@ export default class Players extends React.Component {
 
       return (
         <div className={'players-content'}>
-          <div className="breadcrumb">Breadcrumb...</div>
-
           <div className={'table-main'}>
             {tableContent}
           </div>

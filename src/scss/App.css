@@ -55,6 +55,16 @@
     .table-main .table-row .table-cell:nth-child(1) {
       flex-grow: 0.5; }
 
+.breadcrumbs-main {
+  display: flex;
+  flex-direction: row;
+  padding: 2px 0 2px 15px; }
+  .breadcrumbs-main .crumb {
+    display: flex;
+    flex-direction: row; }
+    .breadcrumbs-main .crumb div {
+      padding: 2px; }
+
 body {
   margin: 0;
   padding: 0;
