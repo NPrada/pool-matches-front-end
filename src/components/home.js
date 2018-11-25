@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import * as assets from '../assets/assetCatalog';
 
 
-export default class Home extends Component {
+export default class Home extends React.Component {
   render() {
     return (
       <div className="App">

@@ -31,10 +31,40 @@
       width: 100%;
       left: 0; }
 
+.table-main {
+  width: 90%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; }
+  .table-main .table-row:hover {
+    background-color: #d1d1d1;
+    border-radius: 2px;
+    cursor: pointer; }
+  .table-main .table-row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1; }
+    .table-main .table-row .table-cell {
+      height: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex: 1; }
+    .table-main .table-row .table-cell:nth-child(1) {
+      flex-grow: 0.5; }
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif; }
+
+.players-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
 
 .App {
   text-align: center; }

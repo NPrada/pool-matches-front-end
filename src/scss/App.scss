@@ -1,10 +1,19 @@
 @import "navbar.scss";
+@import "table.scss";
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
 }
+
+.players-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .App {
   text-align: center;
