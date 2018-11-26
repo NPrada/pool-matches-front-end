@@ -1,0 +1,25 @@
+.breadcrumbs-main{
+  display: flex;
+  flex-direction: row;
+  padding: 2px 0 2px 2%;
+  .crumb{
+    display: flex;
+    flex-direction: row;
+    div{
+      padding: 2px;
+
+      a:link{
+        color: $secondaryTextColor;
+        text-decoration: none;
+        text-decoration-color: black;
+      }
+      a:visited {
+        color: $secondaryTextColor;
+      }
+      a:hover{
+        text-decoration: underline;
+        opacity: 0.8;
+      }
+    }
+  }
+}

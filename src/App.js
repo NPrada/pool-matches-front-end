@@ -18,7 +18,7 @@ const routes = [
   },
   {
     path: "/newGame",
-    sidebar: () =>  <BreadCrumbs crumbs={['Home', 'New Games']}/>,
+    sidebar: () =>  <BreadCrumbs crumbs={['Home', 'New Game']}/>,
     main: () => <h2>NewGame</h2>
   },
   {

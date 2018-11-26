@@ -1,5 +1,6 @@
 .sass-cache/
 *.css.map
+src/**/*.css
 
 #phpstorm folder
 .idea
