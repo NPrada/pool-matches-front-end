@@ -1,5 +1,6 @@
 import React from 'react';
 import {apiUrl} from "./constants";
+import {TableHeader, TableRow} from "./table";
 
 export default class Players extends React.Component {
 
@@ -73,12 +74,17 @@ export default class Players extends React.Component {
       }).reverse();
 
       for(let i = 0; i < usersData.length; i++){
-        tableContent.push( <TableRow key={i} index={i+1} user={usersData[i]}/> )
+
+        tableContent.push(
+          <TableRow key={i}
+              content={[i+1, usersData[i].name, usersData[i].games.length,usersData[i].winRatio + '%' ]}
+          /> )
       }
 
       return (
         <div className={'players-content'}>
           <div className={'table-main'}>
+            <TableHeader headerNames={['#','Name','Total Games','Win %']}/>
             {tableContent}
           </div>
         </div>
@@ -87,23 +93,9 @@ export default class Players extends React.Component {
   }
 }
 
-class TableRow extends React.Component{
-  render(){
-    const {index, user} = this.props;
 
-    const winRatio = getWinRatio(user.games, user._id);
 
-    return (
-      <div className={'table-row'}>
-        <div className={'table-cell'}>{index}</div>
-        <div className={'table-cell'}>{user.name}</div>
-        <div className={'table-cell'}>{user.games.length}</div>
-        <div className={'table-cell'}>{winRatio + '%'}</div>
-      </div>
-    )
 
-  }
-}
 
 const getWinRatio = (gamesArr, userId) =>{
   if(typeof gamesArr !== undefined && gamesArr.length !== 0){

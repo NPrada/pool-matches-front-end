@@ -3,18 +3,19 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import Home from './components/home'
 import Players from './components/players';
+import Games from './components/games'
 
 const routes = [
   {
     path: "/",
     exact: true,
-    sidebar: () => <BreadCrumbs crumbs={['Home']}/>,
+    sidebar: () => null,
     main: () => <Home/>
   },
   {
     path: "/games",
     sidebar: () =>  <BreadCrumbs crumbs={['Home', 'Games']}/>,
-    main: () => <h2>Games</h2>
+    main: () => <Games/>
   },
   {
     path: "/newGame",
@@ -73,7 +74,7 @@ const crumb = (crumbName) => {
       <div className={'crumb-separator'}> /</div>
     </div>
   );
-}
+};
 
 const BreadCrumbs = (crumbs) => {
   let allCrumbs = [];
