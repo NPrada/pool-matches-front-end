@@ -61,6 +61,17 @@ export default class Players extends React.Component {
     } else {
       let tableContent = [];
 
+      console.log(usersData)
+
+      //populate winRatios
+      for(let i = 0; i < usersData.length; i++){
+        usersData[i].winRatio = getWinRatio(usersData[i].games, usersData[i]._id);
+      }
+      //sort by winratio
+      usersData.sort((a,b) => {
+        return a.winRatio - b.winRatio
+      }).reverse();
+
       for(let i = 0; i < usersData.length; i++){
         tableContent.push( <TableRow key={i} index={i+1} user={usersData[i]}/> )
       }

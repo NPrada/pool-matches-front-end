@@ -1,5 +1,7 @@
 .sass-cache/
 *.css.map
+
+#ignore all css
 src/**/*.css
 
 #phpstorm folder

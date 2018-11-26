@@ -33,10 +33,12 @@ const App = () => (
     <div id={'main'}>
 
       <div className={"nav-bar"}>
+        <div className={'nav-buttons-container'}>
           <div className={'nav-button'}> <Link to="/">Home</Link> </div>
           <div className={'nav-button'}> <Link to="/games">Games</Link> </div>
           <div className={'nav-button'}> <Link to="/newGame">New Game </Link> </div>
           <div className={'nav-button'}> <Link to="/players">Players</Link> </div>
+        </div>
       </div>
 
       {routes.map((route, index) => (
