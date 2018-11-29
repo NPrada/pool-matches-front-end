@@ -19,7 +19,7 @@ export default class Players extends React.Component {
       .then((result) => {
           let usersData = {count: result.count, users: []};
 
-          // console.log(usersData[i]._id)
+           console.log(result)
 
           for(let i = 0; i < result.count; i++){
             fetch(apiUrl+"/users/"+result.users[i]._id)
@@ -38,8 +38,6 @@ export default class Players extends React.Component {
               })
 
           }
-
-
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -47,7 +45,7 @@ export default class Players extends React.Component {
         (error) => {
           this.setState({
             isLoaded: false,
-            error
+            error: error,
           });
         }
       )
@@ -105,7 +103,7 @@ const getWinRatio = (gamesArr, userId) =>{
 
         for (let k = 0; k < gamesArr[i].teams[gamesArr[i].winner].length; k++){
 
-          if( gamesArr[i].teams[gamesArr[i].winner][k] === userId){
+          if( gamesArr[i].teams[gamesArr[i].winner][k]._id === userId){
             gamesWon++
           }
         }

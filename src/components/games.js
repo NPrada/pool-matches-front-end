@@ -20,32 +20,6 @@ export default class Games extends React.Component {
         console.log(result)
           let gamesData = {count: result.count, games: []};
 
-
-
-          // for(let i = 0; i < result.count; i++){
-          //   const playersIds = result.games[i].teams.team1.concat(result.games[i].teams.team2)
-          //
-          //   console.log(playersIds)
-          //
-          //   playersIds.forEach((val) => {
-          //     fetch(apiUrl+"/users/"+result.users[i]._id)
-          //       .then(res => res.json())
-          //       .then(result => {
-          //
-          //         //usersData.users.push(result)
-          //
-          //         // if(usersData.count === usersData.users.length){
-          //         //   this.setState({
-          //         //     isLoaded: true,
-          //         //     usersData: usersData.users
-          //         //   });
-          //         // }
-          //       })
-          //   })
-          //
-          //
-          //
-          // }
           this.setState({
             isLoaded: true,
             gamesData: result
@@ -60,6 +34,14 @@ export default class Games extends React.Component {
         }
       )
   }
+
+  getNames = (namesArrOfObj) => {
+    let result = [];
+    for(let i = 0; i < namesArrOfObj.length; i++){
+      result.push(namesArrOfObj[i].name)
+    }
+    return result;
+  };
 
   render() {
     const { error, isLoaded, gamesData } = this.state;
@@ -83,11 +65,18 @@ export default class Games extends React.Component {
       // }).reverse();
       //
 
+
       for(let i = 0; i < gamesList.length; i++){
-        console.log(gamesList[i])
+        console.log(gamesList[i]);
+
+        let team1Names = this.getNames(gamesList[i].teams.team1)
+        let team2Names = this.getNames(gamesList[i].teams.team2)
+
+        const teamToBolden = gamesList[i].winner === 'team1' ? 2 : 3;
+
         tableContent.push(
-          <TableRow key={i}
-             content={[i+1, gamesList[i].date]}/> )
+          <TableRow key={i} bolden={teamToBolden}
+             content={ [i+1, gamesList[i].date, team1Names, team2Names ] }/> )
       }
 
       return (

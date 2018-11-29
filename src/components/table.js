@@ -2,18 +2,33 @@ import React from "react";
 
 export class TableRow extends React.Component{
   render(){
-    const {content} = this.props
-    let rowContents = []
-    content.forEach((val) => {
-      rowContents.push(<div className={'table-cell'}>{val}</div>)
-    })
+    const {content, bolden} = this.props;
+    let rowContents = [];
+    let index = 0;
+    console.log(Array.isArray(content[3]));
+
+    for(let i = 0; i < content.length;i++){
+      const  fontWeight = i === bolden ? '600' : '400';
+      if(Array.isArray(content[i])  ){
+
+        let subcells = [];
+        let k = 0;
+        while (typeof content[i][k] !== "undefined"){
+          console.log('while', content[i][k]);
+          console.log('while', content[i][k].length);
+          subcells.push(<div key={k} className={'table-subcell'}>{content[i][k]}</div>);
+          k++
+        }
+
+        rowContents.push(<div key={i} style={{fontWeight: fontWeight}} className={'table-cell'}>{subcells}</div>)
+      }else{
+        rowContents.push(<div key={i} style={{fontWeight: fontWeight}} className={'table-cell'}>{content[i]}</div>)
+      }
+    }
+
     return (
       <div className={'table-row'}>
         {rowContents}
-        {/*<div className={'table-cell'}>{index}</div>*/}
-        {/*<div className={'table-cell'}>{user.name}</div>*/}
-        {/*<div className={'table-cell'}>{user.games.length}</div>*/}
-        {/*<div className={'table-cell'}>{user.winRatio + '%'}</div>*/}
       </div>
     )
 
